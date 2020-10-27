@@ -1,0 +1,68 @@
+@font-face {
+    font-family: pixChicago;
+    src: url(../fonts/pixChicago.ttf);
+  }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: pixChicago;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #333;
+    background-image: url('../images/computer-bg.gif');
+    background-size: contain;
+    color: white;
+}
+
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: #00CE23;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 0 10px 2px #000000;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    background-color: #008d18;
+    border: 1px solid #005e10;
+    border-radius: 0px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+
+.btn:hover {
+    border-color: black;
+}
+
+.image-switch {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #00CE23;
+}
+
+.image-switch img {
+    border: 2px  solid #008d18;
+    width: 60%;
+}

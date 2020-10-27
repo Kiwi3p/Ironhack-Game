@@ -79,7 +79,7 @@ class Character {
     //If statement for boundaries
     if (player.col < 9) {//|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
       this.col++;
-      }
+      } 
     this.direction = 'right';
     
   }
@@ -141,8 +141,8 @@ class Object {
   }
 }
 
-const object = new Object(4,3);
-const object2 = new Object(5,3);
+const object = new Object(3,5);
+const object2 = new Object(4,5);
 
 function drawObject() {
   context.drawImage(
@@ -190,7 +190,7 @@ document.addEventListener('keydown', event => {
       //}
       break;
     case 40:
-      //if (detectObject())
+      //if (!detectObject())
       //{
       player.moveDown();
       //}
@@ -212,17 +212,27 @@ document.addEventListener('keydown', event => {
 
   //Collision detection
   function detectObject() {
-    if (player.col === object.col && player.row === object.row) {
+    if (player.col === object.col && player.row === object.row || player.col === object2.col && player.row === object2.row) {
       console.log("Object here");
       
     }
   }
   detectObject();
 
+  //function for removing JS file
+  function removeJs2() {
+    let divContent = document.getElementById('switch');
+    divContent.innerHTML = '<script src="../text-adventure/adventure.js"></script>';
+    window.open('../ironhack-game/text-adventure/adventure.html');
+  }
+
   // Code for getting to next world
   if (player.col === 9 && player.row === 4) {
     console.log("next level loading...")
-    document.getElementById('game-board-2').style.display = 'block';
+    //Put logic here that switches out level1.js to level2.js
+    removeJs2();
+    //let link = document.getElementById('switch');
+    //link.setAttribute("src", "../Ironhack-Game/level-layouts/level3.js");
   }
 
 

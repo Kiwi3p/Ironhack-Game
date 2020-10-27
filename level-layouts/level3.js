@@ -15,7 +15,7 @@ function drawGrid() {
     context.beginPath();
     context.moveTo(x, 0);
     context.lineTo(x, height);
-    context.stroke();
+    //context.stroke();
   }
 
   // Draw the horizontal lines
@@ -23,11 +23,11 @@ function drawGrid() {
     context.beginPath();
     context.moveTo(0, y);
     context.lineTo(width, y);
-    context.stroke();
+    //context.stroke();
   }
 }
 
-//divide up into seperate JS files around completion...
+
 class Character {
   constructor(initialCol, initialRow) {
     this.col = initialCol;
@@ -53,7 +53,7 @@ class Character {
 
   moveUp() {
     //If statement for boundaries
-    if (player.row > 0 || object.row < this.row) {//|| player.row != object.row) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
+    if (player.row > 0) { //|| player.row != object.row) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
       this.row--;
       }
     this.direction = 'up';
@@ -77,7 +77,7 @@ class Character {
 
   moveRight() {
     //If statement for boundaries
-    if (player.col < 9) { //|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
+    if (player.col < 9) {//|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
       this.col++;
       } 
     this.direction = 'right';
@@ -101,72 +101,20 @@ function drawPlayer() {
 //enemy code goes here
 class Foe {
   constructor() {
-   // this.setRandomPosition();
-    this.col = 0;
-    this.row = 0;
+    this.setRandomPosition();
 
     this.image = new Image();
     this.image.src = 'images/boss-up.png'
   }
 
   setRandomPosition() {
-    let foeArray = [this.moveUp, this.moveDown, this.moveRight, this.moveLeft];
-    let movement = Math.floor(Math.random() * foeArray.length)
-    console.log(movement)
-    if(movement === 1) {
-      this.moveUp()
-    } else if(movement === 2) {
-      this.moveDown()
-    } else if(movement === 3) {
-      this.moveRight()
-    } else if(movement === 4) {
-      this.moveLeft()
-    }
-    //this.col = Math.floor(Math.random() * tileCount);
-    //this.row = Math.floor(Math.random() * tileCount);
+    this.col = Math.floor(Math.random() * tileCount);
+    this.row = Math.floor(Math.random() * tileCount);
   }
 
-  moveUp() {
-    console.log(this.row)
-    //If statement for boundaries
-    if (this.row > 0) //|| player.row != object.row) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
-      this.row--;
-      //}
-    this.direction = 'up';
-  }
-
-  moveDown() {
-    console.log(this.row)
-
-    //If statement for boundaries
-    if (this.row < 9) //|| player.row != object.row){//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)) {
-      this.row++;
-      //}
-    this.direction = 'down';
-  }
-
-  moveLeft() {
-    console.log(this.col)
-
-    //If statement for boundaries
-    if (this.col > 0) //|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
-      this.col--;
-      //}
-    this.direction = 'left';
-  }
-
-  moveRight() {
-    console.log(this.col)
-
-    //If statement for boundaries
-    if (this.col < 9) //|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
-      this.col++;
-      //} 
-    this.direction = 'right';
+  moveFoe(){
     
   }
-
-  
 }
 
 const foe = new Foe();
@@ -242,7 +190,7 @@ document.addEventListener('keydown', event => {
       //}
       break;
     case 40:
-      //if (player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)
+      //if (!detectObject())
       //{
       player.moveDown();
       //}
@@ -251,7 +199,6 @@ document.addEventListener('keydown', event => {
 
   // Check if the user is on the foe... POTENTIAL COLLISON DATA SECTION, OR DEATH SECTION
   if (player.row === foe.row && player.col === foe.col) {
-    alert("Game Over! Your boss found you. You must work on Saturday")
     frames = 0;
     player.row = 6;
     player.col = 4;
@@ -261,16 +208,14 @@ document.addEventListener('keydown', event => {
     
   if (frames % 2 === 1){
     foe.setRandomPosition();
-    // if foe.col < 
-    //randomize direction
-    //how many steps he 
     }
 
   //Collision detection
   function detectObject() {
     if (player.col === object.col && player.row === object.row || player.col === object2.col && player.row === object2.row) {
-      console.log('player col', player.col, 'player row', player.row, 'object col', object.col, 'object row', object.row)
-    } 
+      console.log("Object here");
+      
+    }
   }
   detectObject();
 
@@ -278,9 +223,7 @@ document.addEventListener('keydown', event => {
   function removeJs() {
     let divContent = document.getElementById('switch');
     divContent.innerHTML = '<script src="level-layouts/level3.js"></script>';
-    window.open('level2.html');
-    window.open('level2.js')
-    //div display none
+    document.open('text-adventure/adventure.html');
   }
 
   // Code for getting to next world
@@ -299,7 +242,7 @@ document.addEventListener('keydown', event => {
 let frames = 0;
 function drawEverything() {
   frames++;
-//console.log(frames);
+console.log(frames);
   context.clearRect(0, 0, width, height);
   drawGrid();
   drawFoe();

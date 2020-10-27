@@ -1,6 +1,6 @@
 #game-board {
     float: left;
     padding: 20px 0px;
-    background-image: url('../images/temp-bg.png');
+    background-image: url("../Ironhack-Game/images/temp-bg.png");
     background-size: contain;
 }
