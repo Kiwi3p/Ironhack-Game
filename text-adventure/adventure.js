@@ -1,9 +1,12 @@
+
 const textElement = document.getElementById('text')
 const optionButtonsElement = document.getElementById('option-buttons')
+//const imgSrc = document.getElementById('image-switch')
 
 let state = {}
 
 function startGame() {
+    //console.log(imgSrc);
     state = {}
     showTextNode(1);
     //youWin();
@@ -11,9 +14,13 @@ function startGame() {
 }
 
 function showTextNode(textNodeIndex) {
+    
     const textNode = textNodes.find(textNode => textNode.id ===
         textNodeIndex)
         textElement.innerText = textNode.text
+
+    //const textImg = textNodes.find(textNode => textNode.img === textNodeIndex)    
+        //imgSrc.innerHTML = textImg.img
         
         while (optionButtonsElement.firstChild) {
             optionButtonsElement.removeChild(optionButtonsElement.firstChild)
@@ -32,24 +39,50 @@ function showTextNode(textNodeIndex) {
 
 }
 
+
 function showOption(option) {
     return option.requiredState == null || option.requiredState(state)
 }
 
-function youWin(option) {
-    if (option.requiredState === true) {
-        return window.open('congrats.html')
-    }
-}
 
 function selectOption(option) {
-    const nextTextNodeId = option.nextText
+    const nextTextNodeId = option.nextText  
     if (nextTextNodeId <= 0) {
         return startGame()
+    } else if (nextTextNodeId === 9) {
+        console.log('this should be finished');
+        callThirdLevel();
+    } else if (nextTextNodeId === 10) {
+        console.log('this should send you to the doctors');
+        callFourthLevel();
     }
+
     state = Object.assign(state, option.setState)
     showTextNode(nextTextNodeId)
 }
+
+/*
+function showImageSrc(textNodes) {
+    //for in loop
+    for (key in textNodes) {
+    const nextTextNodeId = textNodes[key].id;
+    console.log(nextTextNodeId);
+    //const imgId = key.img;
+    //let link = document.getElementsByClassName('img');
+    console.log(imgSrc);
+    console.log(key);
+    if (nextTextNodeId === 1 ) {
+        imgSrc.innerHTML = '<img src="images/treasure.png"/>';
+    } else if (nextTextNodeId === 2 ) {
+        imgSrc.innerHTML = '<img src="images/object1.png"/>';
+    }
+    showTextNode(nextTextNodeId)
+    }
+}
+*/
+
+//function finds texNodes you want by the level....
+//second function takes in individual textnodes...
 
 //if (nextText === 1) {
 //    let link = document.getElementsByClassName('img');
@@ -61,6 +94,7 @@ const textNodes = [
     {
         id: 1,
         text: "You've escaped your boss! Finally, you can take a break knowing you won't have to work this Saturday. What do you do?",
+        img: '<img src="images/boss-up.png"/>',
         options: [
             {
                 text: 'Make coffee',
@@ -76,6 +110,7 @@ const textNodes = [
     {
         id: 2,
         text: "You skip past Todd as he tries to tell you about his children. This does not interest you as you as you're all business, and the business of the day is coffee. You approach the machine, but the mean bean machine has dried up from seam to seam. What do you do?",
+        img: '../images/boss-up.png',
         options: [
             {
                 text: 'Fill the coffee machine',
@@ -122,9 +157,9 @@ const textNodes = [
         text: "Yes! Success! The lucious brown juice flows like the fountain of youth. You try to take a sip, but before you can do anything, everyone in the room picks you up and cheers. You are a hero to them, you are their god. Just when you put your guard downn to enjoy the celebration, Todd tells you that the boss wants to see you. What do you do?",
         options: [
         {
-                text: 'Talk to your boss',
+                text: 'Go to your boss',
                 setState: { win: true},
-                nextText: -1,
+                nextText: 9,
         },
         {
             text: 'Go to the doctors',
@@ -138,7 +173,7 @@ const textNodes = [
         options: [
         {
                 text: 'Go to the doctors',
-                nextText: window.open("./doctor/doctor1.html"),
+                nextText: -1,
         }
         ]
     },
@@ -191,6 +226,63 @@ const textNodes = [
             }
         ]
     },
+    {
+        id: 9,
+        text: "Why are you seeing this?",
+        options: [
+            {
+                text: '???',
+                //requiredState: (currentState) => currentState.blueGoo,
+                setState: { win: true},
+                nextText: -1
+            },
+            {
+                text: 'r u a wizard',
+                //requiredState: (currentState) => currentState.blueGoo,
+                //setState: { coffee: true},
+                nextText: -1
+            }
+        ]
+    },
+
+    {
+        id: 10,
+        text: "Doctors Prompt",
+        options: [
+            {
+                text: 'Why are you seeing this?',
+                //requiredState: (currentState) => currentState.blueGoo,
+                setState: { win: true},
+                nextText: -1
+            },
+            {
+                text: 'r u a wizard',
+                //requiredState: (currentState) => currentState.blueGoo,
+                //setState: { coffee: true},
+                nextText: -1
+            }
+        ]
+    },
+
+    {
+        id: 11,
+        text: "Winner Prompt",
+        options: [
+            {
+                text: 'Why are you seeing this?',
+                //requiredState: (currentState) => currentState.blueGoo,
+                setState: { win: true},
+                nextText: -1
+            },
+            {
+                text: 'r u a wizard',
+                //requiredState: (currentState) => currentState.blueGoo,
+                //setState: { coffee: true},
+                nextText: -1
+            }
+        ]
+    }
+    
 ]
 
 startGame();

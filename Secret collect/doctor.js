@@ -33,6 +33,7 @@ class Character {
     this.col = initialCol;
     this.row = initialRow;
     this.direction = 'down';
+    this.score = 0;
 
     const imagePaths = {
       left: 'images/businessman-LEFT.png',
@@ -259,7 +260,31 @@ function drawObject2() {
   );
 }
 
+class Treasure {
+  constructor() {
+    this.setRandomTreasure(); // to set `this.col` and `this.row`
 
+    this.image = new Image();
+    this.image.src = 'images/treasure.png';
+  }
+
+  setRandomTreasure() {
+    this.col = Math.floor(Math.random() * tileCount);
+    this.row = Math.floor(Math.random() * tileCount);
+  }
+}
+
+const treasure = new Treasure();
+
+function drawTreasure() {
+  context.drawImage(
+    treasure.image,
+    treasure.col * tileSize,
+    treasure.row * tileSize,
+    tileSize,
+    tileSize
+  );
+}
 
 //start not enemy code
 document.addEventListener('keydown', event => {
@@ -301,8 +326,18 @@ document.addEventListener('keydown', event => {
     foe.setRandomPosition();
   } 
   
+  if (player.row === treasure.row && player.col === treasure.col) {
+    console.log("treasure here");
+    player.score++;
+    treasure.setRandomTreasure();
+  }
+  
+  if (player.score === 5){
+    alert("congrats! You found all of your insurance documentation! Unfortunately your visit is not covered by your provider. You are now $50,000 in debt and must declare medical bankruptcy. Maybe try again?")
+  }
+
     
-  if (frames % 0.5 === 0){
+  if (frames % 1 === 0){
     foe.setRandomPosition();
     // if foe.col < 
     //randomize direction
@@ -347,11 +382,13 @@ function drawEverything() {
   frames++;
 //console.log(frames);
   context.clearRect(0, 0, width, height);
+  context.fillText(`Player x: ${player.score}`, 400, 40);
   drawGrid();
   drawFoe();
   drawPlayer();
   drawObject();
   drawObject2();
+  drawTreasure();
 }
 
 setTimeout(drawEverything, 500);

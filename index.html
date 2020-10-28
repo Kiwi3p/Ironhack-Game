@@ -8,14 +8,34 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="game-board2">
-      <canvas width="500" height="500"></canvas>
-      </div>
-    <div id="game-board">
-    <canvas width="500" height="500"></canvas>
-    </div>
     <div id="switch">
-    <script src="index.js"></script>
+      <div id="third-level">
+        <h1>Finished MVP</h1>
+        <canvas id="game-board2" width="500" height="500"></canvas>
+      </div>
+      <div id="second-level">
+        <div id="image-switch">
+          <img src="images/boss-up.png"/>
+        </div>
+        <div class="container">
+            <div id="text">Text</div>
+            <div id="option-buttons" class="btn-grid">
+                <button class="btn">Option 1</button>
+                <button class="btn">Option 2</button>
+                <button class="btn">Option 3</button>
+                <button class="btn">Option 4</button>
+            </div>
+        </div>
     </div>
+      <div id="first-level">
+        <canvas id="game-board" width="500" height="500"></canvas>
+      </div>
+    </div>
+    <script src="text-adventure/adventure.js"></script>
+    <script src="switch-level.js"></script>
+    <div id="no-JS">
+      <script src="index.js"></script>
+    </div>
+    <script src="level-layouts/level2.js"></script>
   </body>
 </html>

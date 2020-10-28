@@ -67,7 +67,7 @@ body {
     border-color: black;
 }
 
-#image-switch {
+.image-switch {
     display: flex;
     width: 20%;
     justify-content: center;
@@ -77,7 +77,7 @@ body {
     background-color: #00CE23;
 }
 
-#image-switch img {
+.image-switch img {
     border: 2px  solid #008d18;
     width: 60%;
 }
