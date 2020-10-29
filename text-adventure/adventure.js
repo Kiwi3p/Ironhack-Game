@@ -1,7 +1,7 @@
 
 const textElement = document.getElementById('text')
 const optionButtonsElement = document.getElementById('option-buttons')
-//const imgSrc = document.getElementById('image-switch')
+const imgSrc = document.getElementById('image-switch')
 
 let state = {}
 
@@ -17,7 +17,8 @@ function showTextNode(textNodeIndex) {
     
     const textNode = textNodes.find(textNode => textNode.id ===
         textNodeIndex)
-        textElement.innerText = textNode.text
+        textElement.innerText = textNode.text;
+        imgSrc.innerHTML = textNode.img;
 
     //const textImg = textNodes.find(textNode => textNode.img === textNodeIndex)    
         //imgSrc.innerHTML = textImg.img
@@ -49,7 +50,7 @@ function selectOption(option) {
     const nextTextNodeId = option.nextText  
     if (nextTextNodeId <= 0) {
         return startGame()
-    } else if (nextTextNodeId === 9) {
+    } else if (nextTextNodeId === 11) {
         console.log('this should be finished');
         callThirdLevel();
     } else if (nextTextNodeId === 10) {
@@ -94,7 +95,7 @@ const textNodes = [
     {
         id: 1,
         text: "You've escaped your boss! Finally, you can take a break knowing you won't have to work this Saturday. What do you do?",
-        img: '<img src="images/boss-up.png"/>',
+        img: '<img src="images/enemy-main.png"/>',
         options: [
             {
                 text: 'Make coffee',
@@ -110,7 +111,7 @@ const textNodes = [
     {
         id: 2,
         text: "You skip past Todd as he tries to tell you about his children. This does not interest you as you as you're all business, and the business of the day is coffee. You approach the machine, but the mean bean machine has dried up from seam to seam. What do you do?",
-        img: '../images/boss-up.png',
+        img: '<img src="images/coffee gif.gif"/>',
         options: [
             {
                 text: 'Fill the coffee machine',
@@ -132,7 +133,8 @@ const textNodes = [
     },
     {
         id: 3,
-        text: "Todd resembles something of a cross between Elvis in his later years, and Johnny Depp. You've always thought about telling him this, but you were never sure if he'd take it as a compliment or as an insult. He yammers on and on again about his wretched children. 'Christopher is going to state for track','Tourance got into Harvard'... GIVE ME A BREAK!!! For gods sake the guy just goes on and on and on, yet he doesn't notice the massive stain on his button down shirt. How are we going to get out of this conversation?",
+        text: "Todd yammers on and on again about his wretched children. 'Christopher is going to state for track','Tourance got into Harvard'... GIVE ME A BREAK!!! How are we going to get out of this conversation?",
+        img: '<img src="images/sleep.gif"/>',
         options: [
             {
                 text: 'Tell him his children are awful',
@@ -155,6 +157,7 @@ const textNodes = [
     {
         id: 4,
         text: "Yes! Success! The lucious brown juice flows like the fountain of youth. You try to take a sip, but before you can do anything, everyone in the room picks you up and cheers. You are a hero to them, you are their god. Just when you put your guard downn to enjoy the celebration, Todd tells you that the boss wants to see you. What do you do?",
+        img: '<img src="images/coffee gif.gif"/>',
         options: [
         {
                 text: 'Go to your boss',
@@ -162,24 +165,30 @@ const textNodes = [
                 nextText: 9,
         },
         {
-            text: 'Go to the doctors',
-            nextText: window.open("./doctor/doctor1.html"),
+            text: 'Talk to Todd',
+            nextText: 12,
         }
         ]
     },
     {
         id: 5,
-        text: "You slap the machine hoping to god that coffee will come out. At first nothing happens. Then, a spark and a sharp stinging sensation vibrates through your body. You have suffered a significant injury and must go to the hospital.",
+        text: "You slap the machine hoping to god that coffee will come out. At first nothing happens. Then, a spark and a sharp stinging sensation vibrates through your body. You have suffered a significant injury that your insurance does not cover What do you do?.",
+        img: '<img src="images/shock.gif"/>',
         options: [
         {
-                text: 'Go to the doctors',
-                nextText: -1,
+                text: 'Die',
+                nextText: 13,
+        },
+        {
+            text: 'Get medical treatment',
+            nextText: 14,
         }
         ]
     },
     {
         id: 6,
         text: "Todd is angered by your insistance that his 'little angels' are in fact little devils. He retreats, and after weeks of therapy he resigns to the fact that perhaps his children are not as interesting as he believes them to be. Todd's therapist has also given him strict orders to never speak to you again so now you only friend is the coffee machine, which doesn't seem to be working. What do you do?",
+        img: '<img src="images/todd-kill.gif"/>',
         options: [
             {
                 text: 'Fill the coffee machine',
@@ -197,7 +206,8 @@ const textNodes = [
     },
     {
         id: 7,
-        text: "Now you've done it. Todd, the man who's always been there for you at the office hates you now. Not just that, but he can't believe you'd embarass him like this. After all these years of working together you mock him for a stain on his shirt? He simply says 'sorry' before proceeding to pick you up, and toss you through the window. The last thing you see before falling to your death is an empty coffee machine.",
+        text: "Now you've done it. Todd, the man who's always been there for you at the office hates you now. He proceeds to pick you up, and toss you through the window. The last thing you see before falling to your death is an empty coffee machine.",
+        img: '<img src="images/todd-kill.gif"/>',
         options: [
             {
                 text: 'Restart',
@@ -211,12 +221,13 @@ const textNodes = [
     {
         id: 8,
         text: "Enough is enough, am I right? It's time to take this place down. <br>You install a virus on the computer that skims $0.01 every 10 minutes from the company bank account. While you're worried someone will catch on, you realize that you're both the IT guy and the company accountant. You flee the country with your new found income and retire. Congrats!",
+        img: '<img src="images/virus.gif"/>',
         options: [
             {
                 text: 'Claim your prize',
                 //requiredState: (currentState) => currentState.blueGoo,
                 setState: { win: true},
-                nextText: -1
+                nextText: 11
             },
             {
                 text: 'Restart',
@@ -228,19 +239,14 @@ const textNodes = [
     },
     {
         id: 9,
-        text: "Why are you seeing this?",
+        text: "Your boss has called you into his office. He's extremely pleased with your coffee making skills and promotes you to CEO of coffee beans... Your dream has been achieved. You get a 2% raise but must now work weekends CONGRATS",
+        img: '<img src="images/enemy-main.png"/>',
         options: [
             {
-                text: '???',
+                text: 'CLAIM YOUR PRIZE',
                 //requiredState: (currentState) => currentState.blueGoo,
                 setState: { win: true},
-                nextText: -1
-            },
-            {
-                text: 'r u a wizard',
-                //requiredState: (currentState) => currentState.blueGoo,
-                //setState: { coffee: true},
-                nextText: -1
+                nextText: 11
             }
         ]
     },
@@ -248,6 +254,7 @@ const textNodes = [
     {
         id: 10,
         text: "Doctors Prompt",
+        img: '<img src="images/main-char-up.png"/>',
         options: [
             {
                 text: 'Why are you seeing this?',
@@ -267,6 +274,7 @@ const textNodes = [
     {
         id: 11,
         text: "Winner Prompt",
+        img: '<img src="images/main-char-down.png"/>',
         options: [
             {
                 text: 'Why are you seeing this?',
@@ -281,7 +289,52 @@ const textNodes = [
                 nextText: -1
             }
         ]
-    }
+    },
+    {
+        id: 12,
+        text: "Todd does not want to talk to you. He's mad you fixed the coffee machine and took the attention off of him. Your boss is waiting.",
+        img: '<img src="images/todd-kill.gif"/>',
+        options: [
+            {
+                text: 'Go to your boss',
+                //requiredState: (currentState) => currentState.blueGoo,
+                setState: { win: true},
+                nextText: 14
+            },
+            {
+                text: 'Slap the machine',
+                //requiredState: (currentState) => currentState.blueGoo,
+                //setState: { coffee: true},
+                nextText: 6
+            }
+        ]
+    },
+    {
+        id: 13,
+        text: "You have chosen to die. Perhaps you should have treated the coffee machine better",
+        img: '<img src="images/skull.gif"/>',
+        options: [
+            {
+                text: 'Restart',
+                //requiredState: (currentState) => currentState.blueGoo,
+                setState: { win: true},
+                nextText: -1
+            }
+        ]
+    },
+    {
+        id: 14,
+        text: "You get medical treatment and feel much better... Better than you ever have in fact. Unfortunately you are in immense medical debt and must declare bankruptcy. You spend the rest of your life working weekends to build your credit score back up again.",
+        img: '<img src="images/hearts.gif"/>',
+        options: [
+            {
+                text: 'Restart',
+                //requiredState: (currentState) => currentState.blueGoo,
+                setState: { win: true},
+                nextText: -1
+            }
+        ]
+    },
     
 ]
 

@@ -15,7 +15,7 @@ function drawGrid() {
     context.beginPath();
     context.moveTo(x, 0);
     context.lineTo(x, height);
-    context.stroke();
+    //context.stroke();
   }
 
   // Draw the horizontal lines
@@ -23,7 +23,7 @@ function drawGrid() {
     context.beginPath();
     context.moveTo(0, y);
     context.lineTo(width, y);
-    context.stroke();
+    //context.stroke();
   }
 }
 
@@ -33,12 +33,13 @@ class Character {
     this.col = initialCol;
     this.row = initialRow;
     this.direction = 'down';
+    this.score = 0;
 
     const imagePaths = {
-      left: 'images/businessman-LEFT.png',
-      up: 'images/businessman-UP.png',
-      right: 'images/businessman-RIGHT.png',
-      down: 'images/businessman-DOWN.png'
+      left: 'images/main-char-left.png',
+      up: 'images/main-char-up.png',
+      right: 'images/main-char-right.png',
+      down: 'images/main-char-down.png'
     };
 
     //saving images in character
@@ -55,7 +56,11 @@ class Character {
     //If statement for boundaries
     if (
       (player.col === object.col && player.row - 1 === object.row) ||
-      (player.col === object2.col && player.row - 1 === object2.row)
+      (player.col === object2.col && player.row - 1 === object2.row) ||
+      (player.col === wall.col && player.row - 1 === wall.row) ||
+      (player.col === wall2.col && player.row - 1 === wall2.row) ||
+      (player.col === wall3.col && player.row - 1 === wall3.row) ||
+      (player.col === wall4.col && player.row - 1 === wall4.row)
     ) {
       console.log('cant move');
     } else if (player.row > 0) {
@@ -68,7 +73,11 @@ class Character {
     //If statement for boundaries
     if (
       (player.col === object.col && player.row + 1 === object.row) ||
-      (player.col === object2.col && player.row + 1 === object2.row)
+      (player.col === object2.col && player.row + 1 === object2.row) ||
+      (player.col === wall.col && player.row + 1 === wall.row) ||
+      (player.col === wall2.col && player.row + 1 === wall2.row) ||
+      (player.col === wall3.col && player.row + 1 === wall3.row) ||
+      (player.col === wall4.col && player.row + 1 === wall4.row)
     ) {
       console.log('cant move');
     } else if (player.row < 9) 
@@ -82,7 +91,11 @@ class Character {
     //If statement for boundaries
     if (
       (player.row === object.row && player.col - 1 === object.col) ||
-      (player.row === object2.row && player.col - 1 === object2.col)
+      (player.row === object2.row && player.col - 1 === object2.col) ||
+      (player.row === wall.row && player.col - 1 === wall.col) ||
+      (player.row === wall2.row && player.col - 1 === wall2.col) ||
+      (player.row === wall3.row && player.col - 1 === wall3.col) ||
+      (player.row === wall4.row && player.col - 1 === wall4.col)
     ) {
       console.log('cant move');
     } else if (player.col > 0) 
@@ -96,7 +109,11 @@ class Character {
     //If statement for boundaries
     if (
       (player.row === object.row && player.col + 1 === object.col) ||
-      (player.row === object2.row && player.col + 1 === object2.col)
+      (player.row === object2.row && player.col + 1 === object2.col) || 
+      (player.row === wall.row && player.col + 1 === wall.col) ||
+      (player.row === wall2.row && player.col + 1 === wall2.col) ||
+      (player.row === wall3.row && player.col + 1 === wall3.col) ||
+      (player.row === wall4.row && player.col + 1 === wall4.col)
     ) {
       console.log('cant move');
     } else if (player.col < 9) 
@@ -108,7 +125,7 @@ class Character {
   }
 }
 
-const player = new Character(4, 5);
+const player = new Character(1, 1);
 
 function drawPlayer() {
   context.drawImage(
@@ -125,11 +142,11 @@ function drawPlayer() {
 class Foe {
   constructor() {
    // this.setRandomPosition();
-    this.col = 0;
-    this.row = 0;
+    this.col = 3;
+    this.row = 4;
 
     this.image = new Image();
-    this.image.src = 'images/boss-up.png'
+    this.image.src = 'images/enemy-main.png'
   }
 
   setRandomPosition() {
@@ -154,7 +171,11 @@ class Foe {
     //If statement for boundaries
     if (
       (this.col === object.col && this.row - 1 === object.row) ||
-      (this.col === object2.col && this.row - 1 === object2.row)
+      (this.col === object2.col && this.row - 1 === object2.row) ||
+      (this.col === wall.col && this.row - 1 === wall.row) ||
+      (this.col === wall2.col && this.row - 1 === wall2.row) ||
+      (this.col === wall3.col && this.row - 1 === wall3.row) ||
+      (this.col === wall4.col && this.row - 1 === wall4.row)
     ) {
       console.log('cant move');
     } else  if (this.row > 0) //|| player.row != object.row) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
@@ -168,8 +189,12 @@ class Foe {
 
     //If statement for boundaries
     if (
-      (player.col === object.col && player.row + 1 === object.row) ||
-      (player.col === object2.col && player.row + 1 === object2.row)
+      (this.col === object.col && this.row + 1 === object.row) ||
+      (this.col === object2.col && this.row + 1 === object2.row) ||
+      (this.col === wall.col && this.row + 1 === wall.row) ||
+      (this.col === wall2.col && this.row + 1 === wall2.row) ||
+      (this.col === wall3.col && this.row + 1 === wall3.row) ||
+      (this.col === wall4.col && this.row + 1 === wall4.row)
     ) {
       console.log('cant move');
     } else if (this.row < 9) //|| player.row != object.row){//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)) {
@@ -183,8 +208,12 @@ class Foe {
 
     //If statement for boundaries
     if (
-      (player.row === object.row && player.col - 1 === object.col) ||
-      (player.row === object2.row && player.col - 1 === object2.col)
+      (this.row === object.row && this.col - 1 === object.col) ||
+      (this.row === object2.row && this.col - 1 === object2.col) ||
+      (this.row === wall.row && this.col - 1 === wall.col) ||
+      (this.row === wall2.row && this.col - 1 === wall2.col) ||
+      (this.row === wall3.row && this.col - 1 === wall3.col) ||
+      (this.row === wall4.row && this.col - 1 === wall4.col)
     ) {
       console.log('cant move');
     } else if (this.col > 0) //|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
@@ -198,8 +227,12 @@ class Foe {
 
     //If statement for boundaries
     if (
-      (player.row === object.row && player.col + 1 === object.col) ||
-      (player.row === object2.row && player.col + 1 === object2.col)
+      (this.row === object.row && this.col + 1 === object.col) ||
+      (this.row === object2.row && this.col + 1 === object2.col) ||
+      (this.row === wall.row && this.col + 1 === wall.col) ||
+      (this.row === wall2.row && this.col + 1 === wall2.col) ||
+      (this.row === wall3.row && this.col + 1 === wall3.col) ||
+      (this.row === wall4.row && this.col + 1 === wall4.col)
     ) {
       console.log('cant move');
     } else if (this.col < 9) //|| player.col != object.col) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
@@ -236,8 +269,8 @@ class Obstacle {
   }
 }
 
-const object = new Obstacle(2,3);
-const object2 = new Obstacle(3,3);
+const object = new Obstacle(2,4);
+const object2 = new Obstacle(3,7);
 
 function drawObject() {
   context.drawImage(
@@ -259,7 +292,95 @@ function drawObject2() {
   );
 }
 
+class Wall {
+  constructor(initialCol, initialRow) {
+    this.col = initialCol;
+    this.row = initialRow;
+  }  
+}
 
+const wall = new Wall(3, 0);
+const wall2 = new Wall(3,1);
+const wall3 = new Wall(3,2);
+const wall4 = new Wall(3,3);
+
+function drawWall() {
+  context.drawImage(
+    wall.image,
+    wall.col * tileSize,
+    wall.row * tileSize,
+    tileSize,
+    tileSize
+  );
+}
+
+function drawWall2() {
+  context.drawImage(
+    wall.image,
+    wall.col * tileSize,
+    wall.row * tileSize,
+    tileSize,
+    tileSize
+  );
+}
+
+function drawWall3() {
+  context.drawImage(
+    wall.image,
+    wall.col * tileSize,
+    wall.row * tileSize,
+    tileSize,
+    tileSize
+  );
+}
+
+function drawWall4() {
+  context.drawImage(
+    wall.image,
+    wall.col * tileSize,
+    wall.row * tileSize,
+    tileSize,
+    tileSize
+  );
+}
+
+//secret Collect
+class Treasure {
+  constructor() {
+    this.setRandomTreasure(); // to set `this.col` and `this.row`
+
+    this.image = new Image();
+    this.image.src = 'images/tps-report.png';
+  }
+
+  setRandomTreasure() {
+    if(
+      (this.col === object.col && this.row  === object.row) ||
+      (this.col === object2.col && this.row  === object2.row) ||
+      (this.col === wall.col && this.row  === wall.row) ||
+      (this.col === wall2.col && this.row  === wall2.row) ||
+      (this.col === wall3.col && this.row  === wall3.row) ||
+      (this.col === wall4.col && this.row  === wall4.row)
+    ) {
+      console.log("treasure no go here") 
+    } else {
+    this.col = Math.floor(Math.random() * tileCount);
+    this.row = Math.floor(Math.random() * tileCount);
+    }
+  }
+}
+
+const treasure = new Treasure();
+
+function drawTreasure() {
+  context.drawImage(
+    treasure.image,
+    treasure.col * tileSize,
+    treasure.row * tileSize,
+    tileSize,
+    tileSize
+  );
+}
 
 //start not enemy code
 document.addEventListener('keydown', event => {
@@ -293,16 +414,36 @@ document.addEventListener('keydown', event => {
   }
 
   // Check if the user is on the foe... POTENTIAL COLLISON DATA SECTION, OR DEATH SECTION
-  if (player.row === foe.row && player.col === foe.col) {
-    alert("Game Over! Your boss found you. You must work on Saturday")
+  if (
+    (player.row === foe.row && player.col === foe.col) ||
+    (player.row === (foe.row - 1) && player.col === (foe.col - 1)) ||
+    (player.row === (foe.row + 1) && player.col === (foe.col + 1))
+    ) {
+    alert("Game Over! Your boss found you. You must work on Saturday")  
+    document.getElementById("dead").play();
+    console.log('he got you');
     frames = 0;
-    player.row = 6;
-    player.col = 4;
+    foeFrames = 0;
+    player.score = 0;
+    player.row = 1;
+    player.col = 1;
     foe.setRandomPosition();
   } 
   
+  if (player.row === treasure.row && player.col === treasure.col) {
+    console.log("treasure here");
+    document.getElementById("tps").play();
+    player.score++;
+    treasure.setRandomTreasure();
+  }
+  
+  if (player.score === 5){
+    document.getElementById("win").play();
+    alert("Congrats! You got all of you work done before your boss could talk to you. You're ahead of your workload and don't have to come in on Saturday!")
+    callSecondLevel();
+  }
     
-  if (frames % 0.5 === 0){
+  if (foeFrames % 1 === 0){
     foe.setRandomPosition();
     // if foe.col < 
     //randomize direction
@@ -329,7 +470,8 @@ document.addEventListener('keydown', event => {
 
 
   // Code for getting to next world
-  if (player.col === 9 && player.row === 4) {
+  if ((player.col === 9 && player.row === 4)||
+      (player.col === 9 && player.row === 5)) {
     console.log("next level loading...")
     //Put logic here that switches out level1.js to level2.js
     //removeJs();
@@ -347,11 +489,23 @@ function drawEverything() {
   frames++;
 //console.log(frames);
   context.clearRect(0, 0, width, height);
+  context.font = "15px pixChicago";
+  context.fillStyle = "#ff80aa";
+  context.fillText(`TPS REPORTS: ${player.score}`, 310, 40);
   drawGrid();
   drawFoe();
   drawPlayer();
   drawObject();
   drawObject2();
+  counter();
+  drawTreasure();
 }
+
+let foeFrames = 0;
+function counter(){
+  foeFrames++;
+  console.log(foeFrames);
+}
+
 
 setTimeout(drawEverything, 500);

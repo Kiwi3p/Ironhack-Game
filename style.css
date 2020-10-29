@@ -1,8 +1,8 @@
 /* Grid based game CSS Here*/
 #game-board {
     padding: 20px 0px;
-    background-image: url("images/temp-bg.png");
-    background-size: contain;
+    background-image: url("images/finished-bg.png");
+    background-size: auto;
 }
 
 #game-board2 {
@@ -29,6 +29,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     background-color: #333;
@@ -67,17 +68,83 @@ body {
     border-color: black;
 }
 
+#second-level {
+    margin: 0 auto;
+}
+
+.container {
+    margin: 0 auto;
+}
+
 #image-switch {
     display: flex;
-    width: 20%;
+    width: 50%;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     padding: 20px;
+    margin: 20px 120px;
     background-color: #00CE23;
+    margin: 0 auto;
 }
 
 #image-switch img {
     border: 2px  solid #008d18;
-    width: 60%;
+    width: 80%;
+}
+
+/* Intro screen */
+
+.instructions {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #00CE23;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 0 10px 2px #000000;
+    margin: 40px auto;
+    padding: 40px;
+}
+
+.instructions img {
+    width: 30%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color:  #00a31b;
+    box-shadow: 0 0 10px 2px #00420b;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+#third-level {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: #00CE23;
+    padding: 40px;
+    border-radius: 0px;
+    box-shadow: 0 0 10px 2px #000000;
+    margin: 40px auto;
+    padding: 40px;
+}
+
+#third-level img {
+    width: 40%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color:  #00a31b;
+    box-shadow: 0 0 10px 2px #00420b;
+    padding: 20px;
+    margin: 20px auto;
 }

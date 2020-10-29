@@ -9,13 +9,35 @@
   </head>
   <body>
     <div id="switch">
+      <div id="start-game">
+        <div class="instructions">
+          <div class="TPS">
+            <h1>Get 5 TPS reports</h1>
+            <img src="images/tps-report.png"/>
+          </div>
+        <div class="or">
+          or
+        </div>
+          <div class="TPS">
+            <h1>Get to the break room</h1>
+            <img src="images/break room.png"/>
+          </div>
+        <div class="button-start">
+        <button id="start-button">StartGame</button>
+        </div>
+      </div>
+      </div>
       <div id="third-level">
-        <h1>Finished MVP</h1>
-        <canvas id="game-board2" width="500" height="500"></canvas>
+        <h1>You win!</h1>
+        <h2>Congrats... Have a slice</h2>
+        <img src="images/winner.gif"/>
+        <div class="button-restart">
+          <button id="restart-button">Restart Game</button>
+        </div>
       </div>
       <div id="second-level">
         <div id="image-switch">
-          <img src="images/boss-up.png"/>
+          <img src="images/coffee gif.gif"/>
         </div>
         <div class="container">
             <div id="text">Text</div>
@@ -29,6 +51,15 @@
     </div>
       <div id="first-level">
         <canvas id="game-board" width="500" height="500"></canvas>
+        <audio id="tps">
+          <source src="audio/tps-report.wav">
+        </audio>
+        <audio id="dead">
+          <source src="audio/lumberg.wav">
+        </audio>
+        <audio id="win">
+          <source src="audio/win.wav">
+        </audio>
       </div>
     </div>
     <script src="text-adventure/adventure.js"></script>
@@ -36,6 +67,5 @@
     <div id="no-JS">
       <script src="index.js"></script>
     </div>
-    <script src="level-layouts/level2.js"></script>
   </body>
 </html>
