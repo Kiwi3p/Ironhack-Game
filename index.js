@@ -178,7 +178,7 @@ class Foe {
       (this.col === wall4.col && this.row - 1 === wall4.row)
     ) {
       console.log('cant move');
-    } else  if (this.row > 0) //|| player.row != object.row) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
+    } else  if (this.row > 0) 
       this.row--;
       //}
     this.direction = 'up';
@@ -507,5 +507,5 @@ function counter(){
   console.log(foeFrames);
 }
 
-
+ 
 setTimeout(drawEverything, 500);
