@@ -14,8 +14,7 @@
 /* Text Adventure game CSS Here*/
 
 @font-face {
-    font-family: pixChicago;
-    src: url(fonts/pixChicago.ttf);
+    font-family: 'VT323', monospace;
   }
 
 *, *::before, *::after {

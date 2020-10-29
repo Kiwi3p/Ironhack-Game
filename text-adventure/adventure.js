@@ -133,7 +133,7 @@ const textNodes = [
     },
     {
         id: 3,
-        text: "Todd yammers on and on again about his wretched children. 'Christopher is going to state for track','Tourance got into Harvard'... GIVE ME A BREAK!!! How are we going to get out of this conversation?",
+        text: "Todd yammers on and on about his wretched children. 'Christopher is going to state for track','Tourance got into Harvard'... GIVE ME A BREAK!!! How are we going to get out of this conversation?",
         img: '<img src="images/sleep.gif"/>',
         options: [
             {
@@ -156,7 +156,7 @@ const textNodes = [
     },
     {
         id: 4,
-        text: "Yes! Success! The lucious brown juice flows like the fountain of youth. You try to take a sip, but before you can do anything, everyone in the room picks you up and cheers. You are a hero to them, you are their god. Just when you put your guard downn to enjoy the celebration, Todd tells you that the boss wants to see you. What do you do?",
+        text: "Yes! Success! The lucious brown juice flows like the fountain of youth. Everyone in the room picks you up and cheers. You are a hero to them, you are their god. Todd tells you that the boss wants to see you. What do you do?",
         img: '<img src="images/coffee gif.gif"/>',
         options: [
         {
@@ -172,7 +172,7 @@ const textNodes = [
     },
     {
         id: 5,
-        text: "You slap the machine hoping to god that coffee will come out. At first nothing happens. Then, a spark and a sharp stinging sensation vibrates through your body. You have suffered a significant injury that your insurance does not cover What do you do?.",
+        text: "You slap the coffee machine. At first nothing happens. Then, a spark and a sharp stinging sensation vibrates through your body. You have suffered a significant injury that your insurance does not cover. What do you do?.",
         img: '<img src="images/shock.gif"/>',
         options: [
         {
@@ -187,7 +187,7 @@ const textNodes = [
     },
     {
         id: 6,
-        text: "Todd is angered by your insistance that his 'little angels' are in fact little devils. He retreats, and after weeks of therapy he resigns to the fact that perhaps his children are not as interesting as he believes them to be. Todd's therapist has also given him strict orders to never speak to you again so now you only friend is the coffee machine, which doesn't seem to be working. What do you do?",
+        text: "Todd is angered by your insistance that his 'little angels' are in fact 'little devils'. He retreats, and after weeks of therapy he resigns to the fact that perhaps his children are not as interesting as he believes them to be. Todd's therapist has also given him strict orders to never speak to you again so now your only friend is the coffee machine, which doesn't seem to be working. What do you do?",
         img: '<img src="images/todd-kill.gif"/>',
         options: [
             {
@@ -220,7 +220,7 @@ const textNodes = [
     },
     {
         id: 8,
-        text: "Enough is enough, am I right? It's time to take this place down. <br>You install a virus on the computer that skims $0.01 every 10 minutes from the company bank account. While you're worried someone will catch on, you realize that you're both the IT guy and the company accountant. You flee the country with your new found income and retire. Congrats!",
+        text: "Enough is enough, am I right? It's time to take this place down. You install a virus on the computer that skims $0.01 every 10 minutes from the company bank account. You flee the country with your new found income and retire. Congrats!",
         img: '<img src="images/virus.gif"/>',
         options: [
             {
@@ -299,13 +299,13 @@ const textNodes = [
                 text: 'Go to your boss',
                 //requiredState: (currentState) => currentState.blueGoo,
                 setState: { win: true},
-                nextText: 14
+                nextText: 9
             },
             {
                 text: 'Slap the machine',
                 //requiredState: (currentState) => currentState.blueGoo,
                 //setState: { coffee: true},
-                nextText: 6
+                nextText: 5
             }
         ]
     },
@@ -324,7 +324,7 @@ const textNodes = [
     },
     {
         id: 14,
-        text: "You get medical treatment and feel much better... Better than you ever have in fact. Unfortunately you are in immense medical debt and must declare bankruptcy. You spend the rest of your life working weekends to build your credit score back up again.",
+        text: "You get medical treatment and feel much better... Unfortunately you are in immense medical debt and must declare bankruptcy. You spend the rest of your life working weekends to build your credit score back up again.",
         img: '<img src="images/hearts.gif"/>',
         options: [
             {

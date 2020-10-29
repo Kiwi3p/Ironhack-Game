@@ -178,7 +178,7 @@ class Foe {
       (this.col === wall4.col && this.row - 1 === wall4.row)
     ) {
       console.log('cant move');
-    } else  if (this.row > 0) 
+    } else  if (this.row > 0) //|| player.row != object.row) {//(player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)){
       this.row--;
       //}
     this.direction = 'up';
@@ -355,7 +355,7 @@ class Treasure {
 
   setRandomTreasure() {
     if(
-      (this.col === object.col && this.row  === object.row) ||
+      (this.col === object.col || this.row  === object.row) ||
       (this.col === object2.col && this.row  === object2.row) ||
       (this.col === wall.col && this.row  === wall.row) ||
       (this.col === wall2.col && this.row  === wall2.row) ||
@@ -363,10 +363,10 @@ class Treasure {
       (this.col === wall4.col && this.row  === wall4.row)
     ) {
       console.log("treasure no go here") 
-    } else {
+    } 
     this.col = Math.floor(Math.random() * tileCount);
     this.row = Math.floor(Math.random() * tileCount);
-    }
+    
   }
 }
 
@@ -507,5 +507,5 @@ function counter(){
   console.log(foeFrames);
 }
 
- 
+
 setTimeout(drawEverything, 500);
