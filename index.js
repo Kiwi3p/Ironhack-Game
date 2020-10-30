@@ -248,6 +248,7 @@ class Foe {
 const foe = new Foe();
 
 function drawFoe() {
+  foeFrames++;
   context.drawImage(
     foe.image,
     foe.col * tileSize,
@@ -356,17 +357,21 @@ class Treasure {
   setRandomTreasure() {
     if(
       (this.col === object.col || this.row  === object.row) ||
-      (this.col === object2.col && this.row  === object2.row) ||
-      (this.col === wall.col && this.row  === wall.row) ||
+      (this.col === object2.col && this.row  === object2.row) 
+    ) {
+      this.col === 8;
+      this.row = Math.floor(Math.random() * tileCount);
+      console.log("treasure no go here") 
+    } else if ((this.col === wall.col && this.row  === wall.row) ||
       (this.col === wall2.col && this.row  === wall2.row) ||
       (this.col === wall3.col && this.row  === wall3.row) ||
-      (this.col === wall4.col && this.row  === wall4.row)
-    ) {
-      console.log("treasure no go here") 
-    } 
+      (this.col === wall4.col && this.row  === wall4.row) ) {
+      this.col = Math.floor(Math.random() * tileCount);
+      this.row = 7;
+      } else {
     this.col = Math.floor(Math.random() * tileCount);
     this.row = Math.floor(Math.random() * tileCount);
-    
+    }
   }
 }
 
@@ -388,28 +393,16 @@ document.addEventListener('keydown', event => {
 
   switch (event.keyCode) {
     case 37:
-      //if (player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)
-      //{
       player.moveLeft();
-      //}
       break;
     case 38:
-      //if (player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)
-      //{
       player.moveUp();
-      //}
       break;
     case 39:
-      //if (player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)
-      //{
       player.moveRight();
-      //}
       break;
     case 40:
-      //if (player.row > object.row && player.col > foe.col || player.row < object.row && player.col < foe.col)
-      //{
       player.moveDown();
-      //}
       break;
   }
 
@@ -445,9 +438,6 @@ document.addEventListener('keydown', event => {
     
   if (foeFrames % 1 === 0){
     foe.setRandomPosition();
-    // if foe.col < 
-    //randomize direction
-    //how many steps he 
     }
 
   //Collision detection
@@ -458,40 +448,28 @@ document.addEventListener('keydown', event => {
   }
   detectObject();
 
-  //function for removing JS file
-  function removeJs() {
-    let divContent = document.getElementById('switch');
-    divContent.innerHTML = '<script src="level-layouts/level3.js"></script>';
-    window.open('level2.html');
-    window.open('level2.js')
-    //div display none
-  }
-
 
 
   // Code for getting to next world
   if ((player.col === 9 && player.row === 4)||
       (player.col === 9 && player.row === 5)) {
     console.log("next level loading...")
-    //Put logic here that switches out level1.js to level2.js
-    //removeJs();
+    
     callSecondLevel();
-    //let link = document.getElementById('switch');
-    //link.setAttribute("src", "../Ironhack-Game/level-layouts/level3.js");
   }
 
 
   // Draw everything
   drawEverything();
-});
+  });
 let frames = 0;
 function drawEverything() {
   frames++;
 //console.log(frames);
   context.clearRect(0, 0, width, height);
-  context.font = "15px pixChicago";
+  context.font = "30px VT323";
   context.fillStyle = "#ff80aa";
-  context.fillText(`TPS REPORTS: ${player.score}`, 310, 40);
+  context.fillText(`TPS REPORTS: ${player.score}`, 300, 40);
   drawGrid();
   drawFoe();
   drawPlayer();
@@ -507,5 +485,7 @@ function counter(){
   console.log(foeFrames);
 }
 
-
+function updateFoe() {
+  counter();
+}
 setTimeout(drawEverything, 500);

@@ -19,7 +19,7 @@
 
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: pixChicago;
+    font-family: 'VT323', monospace;
 }
 
 body {
@@ -36,6 +36,8 @@ body {
     background-size: contain;
     color: white;
 }
+
+
 
 
 .container {
@@ -61,6 +63,11 @@ body {
     padding: 5px 10px;
     color: white;
     outline: none;
+    font-size: 1.2em;
+}
+
+#text {
+    font-size: 2em;
 }
 
 .btn:hover {
@@ -109,7 +116,7 @@ body {
 }
 
 .instructions img {
-    width: 30%;
+    width: 50%;
     display: flex;
     align-content: center;
     justify-content: center;
